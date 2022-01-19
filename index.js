@@ -11,8 +11,9 @@ function hubpost(portal, form, payload) {
     submittedAt: Date.now(),
     fields: Object.keys(payload).reduce((fields, key) => {
       var field = payload[key]
+      const objectTypeId = field && field.objectTypeId ? field.objectTypeId : objectTypeIds.contact
       return fields.concat({
-        objectTypeId: field.objectTypeId || objectTypeIds.contact,
+        objectTypeId: objectTypeId,
         name: key,
         value: field.value || field,
       })
