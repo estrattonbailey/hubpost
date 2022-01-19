@@ -2,7 +2,8 @@
   "name": "hubpost",
   "version": "0.1.0",
   "description": "A little util to submit form data to HubSpot.",
-  "main": "index.js",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "scripts": {},
   "keywords": ["hubspot", "ajax"],
   "repository": {
