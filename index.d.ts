@@ -6,7 +6,7 @@ declare enum objectTypeIds {
 }
 
 export type Payload = {
-  [field: string]: string | {
+  [field: string]: string | undefined | {
     objectTypeId: string
     value: string | number
   }
