@@ -1,6 +1,6 @@
 {
   "name": "hubpost",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A little util to submit form data to HubSpot.",
   "main": "./index.js",
   "types": "./index.d.ts",
