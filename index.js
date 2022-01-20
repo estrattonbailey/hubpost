@@ -5,23 +5,24 @@ var objectTypeIds = {
   ticket: '0-5',
 }
 
+function normalizeFields(payload) {
+  return Object.keys(payload).reduce((fields, key) => {
+    var field = payload[key]
+    var objectTypeId = field && field.objectTypeId ? field.objectTypeId : objectTypeIds.contact
+    return fields.concat({
+      objectTypeId: objectTypeId,
+      name: key,
+      value: field && typeof field === 'object' ? field.value : field,
+    })
+  }, [])
+}
+
 function hubpost(portal, form, payload) {
   var url = `https://api.hsforms.com/submissions/v3/integration/submit/${portal}/${form}`
-  var data = {
-    submittedAt: Date.now(),
-    fields: Object.keys(payload).reduce((fields, key) => {
-      var field = payload[key]
-      const objectTypeId = field && field.objectTypeId ? field.objectTypeId : objectTypeIds.contact
-      return fields.concat({
-        objectTypeId: objectTypeId,
-        name: key,
-        value: field.value || field,
-      })
-    }, []),
-    context: {
-      pageUri: window.location.href,
-      pageName: document.title,
-    },
+  var fields = normalizeFields(payload)
+  var context = {
+    pageUri: window.location.href,
+    pageName: document.title,
   }
 
   fetch(url, {
@@ -29,7 +30,11 @@ function hubpost(portal, form, payload) {
     headers: {
       'content-type': 'application/json',
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify({
+      submittedAt: Date.now(),
+      fields,
+      context
+    })
   })
     .then(res => res.json())
     .then(res => {

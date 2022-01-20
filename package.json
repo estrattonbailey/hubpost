@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/estrattonbailey/hubpost/issues"
   },
-  "homepage": "https://github.com/estrattonbailey/hubpost#readme"
+  "homepage": "https://github.com/estrattonbailey/hubpost#readme",
+  "devDependencies": {
+    "uvu": "^0.5.3"
+  }
 }
