@@ -25,7 +25,7 @@ function hubpost(portal, form, payload) {
     pageName: document.title,
   }
 
-  fetch(url, {
+  return fetch(url, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',

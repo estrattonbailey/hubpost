@@ -5,10 +5,12 @@ declare enum objectTypeIds {
   ticket = '0-5',
 }
 
+export type Value = string | number | boolean | null | undefined
+
 export type Payload = {
-  [field: string]: string | undefined | {
+  [field: string]: Value | {
     objectTypeId: string
-    value: string | number
+    value: Value
   }
 }
 
