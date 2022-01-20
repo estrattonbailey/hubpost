@@ -4,7 +4,9 @@
   "description": "A little util to submit form data to HubSpot.",
   "main": "./index.js",
   "types": "./index.d.ts",
-  "scripts": {},
+  "scripts": {
+    "test": "c8 node test"
+  },
   "keywords": [
     "hubspot",
     "ajax"
@@ -20,6 +22,7 @@
   },
   "homepage": "https://github.com/estrattonbailey/hubpost#readme",
   "devDependencies": {
+    "c8": "^7.11.0",
     "uvu": "^0.5.3"
   }
 }
