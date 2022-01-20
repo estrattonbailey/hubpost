@@ -18,7 +18,7 @@ function normalizeFields(payload) {
 }
 
 function hubpost(portal, form, payload) {
-  var url = `https://api.hsforms.com/submissions/v3/integration/submit/${portal}/${form}`
+  var url = ['https://api.hsforms.com/submissions/v3/integration/submit', portal, form].join('/')
   var fields = normalizeFields(payload)
   var context = {
     pageUri: window.location.href,
@@ -32,8 +32,8 @@ function hubpost(portal, form, payload) {
     },
     body: JSON.stringify({
       submittedAt: Date.now(),
-      fields,
-      context
+      fields: fields,
+      context: context
     })
   })
     .then(function (res) { return res.json() })
@@ -53,6 +53,6 @@ function hubpost(portal, form, payload) {
 }
 
 module.exports = {
-  objectTypeIds,
-  hubpost
+  objectTypeIds: objectTypeIds,
+  hubpost: hubpost
 }
