@@ -6,7 +6,7 @@ var objectTypeIds = {
 }
 
 function normalizeFields(payload) {
-  return Object.keys(payload).reduce((fields, key) => {
+  return Object.keys(payload).reduce(function (fields, key) {
     var field = payload[key]
     var objectTypeId = field && field.objectTypeId ? field.objectTypeId : objectTypeIds.contact
     return fields.concat({
@@ -36,10 +36,10 @@ function hubpost(portal, form, payload) {
       context
     })
   })
-    .then(res => res.json())
-    .then(res => {
+    .then(function (res) { return res.json() })
+    .then(function (res) {
       if (!res.ok && res.status === 'error') {
-        let error = new Error(res.message)
+        var error = new Error(res.message)
 
         error.status = res.status
         error.correlationId = res.correlationId
